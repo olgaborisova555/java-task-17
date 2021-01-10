@@ -3,10 +3,25 @@ package ru.netology.radio;
 public class Radio {
     private int stationNumber;
     private int soundVolume;
-    private int stationNumberMax=9;
+    private int stationNumberMax=10;
     private int stationNumberMin=0;
-    private int soundVolumeMax = 10;
+    private int soundVolumeMax = 100;
     private int soundVolumeMin = 0;
+
+    public Radio(int stationNumberMax, int soundVolume) {
+        this.stationNumberMax = stationNumberMax;
+        this.soundVolume = soundVolume;
+    }
+
+    public Radio(int stationNumberMax) {
+        this.stationNumberMax = stationNumberMax;
+    }
+
+    public Radio() {
+
+    }
+
+
 
     public int getStationNumber(){
         return this.stationNumber;
@@ -27,27 +42,27 @@ public class Radio {
     }
 
     public void setStationNext(){
-        if (this.stationNumber == 9){
-            this.stationNumber = 0;
+        if (this.stationNumber == stationNumberMax){
+            this.stationNumber = stationNumberMin;
         }else this.stationNumber += 1;
     }
 
     public void setStationPrev(){
-        if (this.stationNumber == 0){
-            this.stationNumber = 9;
+        if (this.stationNumber == stationNumberMin){
+            this.stationNumber = stationNumberMax;
         }else this.stationNumber -= 1;
     }
 
-    public void setSoundVolumePlus(int clicks){
+    public void setSoundVolumePlus(){
 
-        if (this.soundVolume + clicks > 10){
-            this.soundVolume = 10;
-        }else this.soundVolume = this.soundVolume + clicks;
+        if (this.soundVolume == soundVolumeMax){
+            return;
+        }else this.soundVolume = this.soundVolume + 1;
 
     }
 
     public void setSoundVolumeMinus(){
-        if (this.soundVolume > 0){
+        if (this.soundVolume > soundVolumeMin){
             this.soundVolume = this.soundVolume - 1;
         }else return;
     }

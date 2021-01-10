@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class RadioTest {
     @Test
     void setStationByNumberInside(){
-        Radio service = new Radio();
-        int button = 9;
-        int expected = 9;
+        Radio service = new Radio(10);
+        int button = 2;
+        int expected = 2;
 
         service.setStationNumber(button);
         int actual = service.getStationNumber();
@@ -18,7 +18,7 @@ public class RadioTest {
 
     @Test
     void setStationByNumberOver(){
-        Radio service = new Radio();
+        Radio service = new Radio(10);
         int button = 11;
         int expected = 0;
 
@@ -30,7 +30,7 @@ public class RadioTest {
 
     @Test
     void setStationByNumberBelow(){
-        Radio service = new Radio();
+        Radio service = new Radio(10);
         int button = -1;
         int expected = 0;
 
@@ -43,7 +43,7 @@ public class RadioTest {
 
     @Test
     void setStationWithNext(){
-        Radio service = new Radio();
+        Radio service = new Radio(10);
         int button = 8;
         int expected = 9;
 
@@ -56,7 +56,7 @@ public class RadioTest {
 
     @Test
     void setStationWithNextLimit(){
-        Radio service = new Radio();
+        Radio service = new Radio(9);
         int button = 9;
         int expected = 0;
 
@@ -85,7 +85,7 @@ public class RadioTest {
     void setStationWithPrevLimit(){
         Radio service = new Radio();
         int button = 0;
-        int expected = 9;
+        int expected = 10;
 
         service.setStationNumber(button);
         service.setStationPrev();
@@ -100,7 +100,7 @@ public class RadioTest {
         Radio service = new Radio();
         int expected = 1;
 
-        service.setSoundVolumePlus(1);
+        service.setSoundVolumePlus();
         int actual = service.getSoundVolume();
 
         assertEquals(expected, actual);
@@ -109,10 +109,10 @@ public class RadioTest {
 
     @Test
     void setSoundWithPlusOver(){
-        Radio service = new Radio();
-        int expected = 10;
+        Radio service = new Radio(5, 100);
+        int expected = 100;
 
-        service.setSoundVolumePlus(100);
+        service.setSoundVolumePlus();
         int actual = service.getSoundVolume();
 
         assertEquals(expected, actual);
@@ -122,10 +122,9 @@ public class RadioTest {
 
     @Test
     void setSoundWithMinus(){
-        Radio service = new Radio();
-        int expected = 1;
+        Radio service = new Radio(5,3);
+        int expected = 2;
 
-        service.setSoundVolumePlus(2);
         service.setSoundVolumeMinus();
         int actual = service.getSoundVolume();
 
